@@ -1,29 +1,76 @@
 [build-system]
-requires = ["setuptools>=69", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "eva-exploit"
-version = "3.5"
-description = "Exploit Vector Agent"
+name = "mitsu"
+version = "1.4.21"
+description = "A chibi red-team framework client for guided and autonomous pentesting"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
-authors = [
-  { name = "ARCANGEL0" }
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "ARCANGEL0" }]
+keywords = ["penetration-testing", "red-team", "MCP", "security", "agentic-framework"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Information Technology",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Security",
 ]
 dependencies = [
-  "colorama>=0.4.6",
-  "openai>=1.0.0",
-  "requests>=2.31.0"
+  "Pillow>=10.0.0",
+  "mcp>=2.3,<3",
+  "pydantic>=2.0",
+  "rich>=13.7.0",
+  "textual>=1.0.0",
 ]
 
+[project.urls]
+Homepage = "https://github.com/ARCANGEL0/Mitsu"
+Repository = "https://github.com/ARCANGEL0/Mitsu"
+Issues = "https://github.com/ARCANGEL0/Mitsu/issues"
+
 [project.scripts]
-eva = "eva:cli"
+mitsu = "mitsu.__main__:main"
 
 [tool.setuptools]
-py-modules = ["eva", "config"]
+packages = [
+  "mitsu",
+  "mitsu.agents",
+  "mitsu.armory",
+  "mitsu.config",
+  "mitsu.pets",
+  "mitsu.providers",
+  "mitsu.search",
+  "mitsu.services",
+  "mitsu.tools",
+  "mitsu.tui",
+  "mitsu.tui.dialogs",
+  "mitsu.tui.widgets",
+  "mitsu.workspace",
+]
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["utils*", "modules*", "sessions*"]
+[tool.setuptools.package-dir]
+"mitsu" = "."
+"mitsu.agents" = "agents"
+"mitsu.armory" = "armory"
+"mitsu.config" = "config"
+"mitsu.pets" = "pets"
+"mitsu.providers" = "providers"
+"mitsu.search" = "search"
+"mitsu.services" = "services"
+"mitsu.tools" = "tools"
+"mitsu.tui" = "tui"
+"mitsu.tui.dialogs" = "tui/dialogs"
+"mitsu.tui.widgets" = "tui/widgets"
+"mitsu.workspace" = "workspace"
+
+[tool.setuptools.package-data]
+mitsu = ["assets/pets/*.webp", "version.txt"]
+"mitsu.tui" = ["theme.tcss"]
